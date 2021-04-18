@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 
 
 function KeyBoard(props) {
     const [isNumber, setIsNumber] = React.useState(false)
+
+    const onSearchClicked = e => {
+        e.preventDefault();
+        props.search(e)
+        props.history.push('/searchResult')
+    }
 
     return (
         <>
@@ -47,7 +54,7 @@ function KeyBoard(props) {
                         <div className="key-board-row">
                             <span className="space-clear"><button onClick={e => props.handleSearch(' ')} >SPACE</button></span>
                             <span className="space-clear"><button onClick={e => props.clearSearchString()}>CLEAR</button></span>
-                            <span className="search-btn"><a href="search-results.html"><button onClick={e => props.search(e)}>SEARCH</button></a></span>
+                            <span className="search-btn"><a href="/searchResult" onClick={e => onSearchClicked(e)}><button >SEARCH</button></a></span>
                         </div>
 
                     </div>
@@ -102,7 +109,7 @@ function KeyBoard(props) {
                         <div className="key-board-row">
                             <span className="space-clear"><button onClick={e => props.handleSearch(' ')} >SPACE</button></span>
                             <span className="space-clear"><button onClick={e => props.clearSearchString()}>CLEAR</button></span>
-                            <span className="search-btn"><a href="search-results.html"><button onClick={e => props.search(e)}> SEARCH</button></a></span>
+                            <span className="search-btn"><a href="/searchResult" onClick={e => onSearchClicked(e)}><button > SEARCH</button></a></span>
                         </div>
 
                     </div>
@@ -113,4 +120,4 @@ function KeyBoard(props) {
 
 }
 
-export default KeyBoard
+export default withRouter(KeyBoard)
