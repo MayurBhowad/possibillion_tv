@@ -1,3 +1,3 @@
 module.exports = {
-    API_KEY: process.env.API_KEY_HEROKU
+    REACT_APP_API_KEY: process.env.REACT_APP_API_KEY
 }
