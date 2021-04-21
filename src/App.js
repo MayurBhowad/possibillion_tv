@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Search from './components/Search.component';
 import SearchResult from './components/SearchResult.component';
+import './App.css'
 
 // redux
 import { Provider } from 'react-redux';

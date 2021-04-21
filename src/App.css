@@ -3,3 +3,11 @@
 html{
   font-family: 'Roboto', sans-serif;
 }
+
+.loading{
+  color: #fff;
+}
+
+.no-movie-found{
+  color: #FFF;
+}

@@ -24,7 +24,9 @@ const Search = (props) => {
 
     const search = (e) => {
         e.preventDefault();
-        props.searchMoviesByString(SearchString)
+        if (SearchString !== '') {
+            props.searchMoviesByString(SearchString)
+        }
     }
 
     return (
@@ -40,13 +42,13 @@ const Search = (props) => {
                                     <span className="input-search">
                                         <img src="assets/images/icons/search-icon.png" />
                                     </span>
-                                    <input type="text" defaultValue={SearchString} className="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" />
+                                    <input type="text" defaultValue={SearchString} onChange={e => setSearchString(e.target.value)} className="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" />
                                 </div>
                             </div>
 
                             <div className="search-block-iteams">
                                 <RecentSearch />
-                                <KeyBoard handleSearch={handleSearch} cancelLastLetter={cancelLastLetter} clearSearchString={clearSearchString} search={search} />
+                                <KeyBoard SearchString={SearchString} handleSearch={handleSearch} cancelLastLetter={cancelLastLetter} clearSearchString={clearSearchString} search={search} />
                             </div>
                         </div>
                     </div>

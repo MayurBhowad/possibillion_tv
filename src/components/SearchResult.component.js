@@ -7,10 +7,12 @@ import TopNav from './top-nav/TopNav.component';
 function SearchResult(props) {
     let displayCard;
     if (props.movies.movies === null || props.movies.loading) {
-        displayCard = (<h4>Loading</h4>)
+        displayCard = (<h4 className="loading">Loading...</h4>)
     } else {
         if (props.movies.movies.length > 0) {
             displayCard = (props.movies.movies.map(movie => (<MovieCard key={movie.id} movie={movie} />)))
+        } else {
+            displayCard = (<p className="no-movie-found">Movie Not Found!</p>)
         }
     }
 
@@ -95,9 +97,12 @@ export default connect(mapStateToProps, {})(SearchResult)
 
 const MovieCard = (props) => {
     let language = locale.getByTag(props.movie.original_language).name
+    let image = props.movie.poster_path !== null
+        ? (`http://image.tmdb.org/t/p/w500${props.movie.poster_path}`)
+        : 'https://lh3.googleusercontent.com/proxy/7a3BtlMo8Rz2_QlCMOaTNdBDjl_UgphFIWIo3afaoPZp9ms50nO6x5hDvUz3mOrrnTaxgNeRzcVaZoxyiZRyp0Q2eGOfMyJBmqqKOjQbLQ'
     return (
         <div key={props.movie.id} className="item"><a href="#">
-            <img src={`http://image.tmdb.org/t/p/w500${props.movie.poster_path}`} />
+            <img src={image} />
             <p className="movie-name">{props.movie.title} ({language})</p></a>
         </div>
     )
